@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article class="article">
+  <header>
+    <h1>Nový produkt</h1>
+      <hr class="sedaCara"><br />
+  </header>
+  <section>
+    <form method="post" th:action="@{/produkty/vytvorit}" th:object="${productDTO}">
+        <div class="formDiv">
+          <label>Název produktu</label><br />
+          <input class="input" th:field="*{nazev}"/><br />
+          <small class="validError" th:errors="*{nazev}"></small>
+        </div>
+        <div class="formDiv">
+          <label>Popis produktu</label><br />
+          <input class="input" th:field="*{popis}"/><br />
+          <small class="validError" th:errors="*{popis}"></small>
+        </div>
+        <div class="formDiv">
+          <label>Cena produktu</label><br />
+          <input class="input" type="number" th:field="*{cena}"/><br />
+          <small class="validError" th:errors="*{cena}"></small>
+        </div>
+        <div>
+          <button class="tlacitkoSubmit" type="submit">Vytvořit</button><br />
+            <a th:href="@{/produkty}">Zpět</a>
+        </div>
+    </form>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.input {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: darkgrey;
+    margin-bottom: 0px;
+    width: 250px;
+    height: 30px;
+}
+.formDiv {
+    margin-bottom: 10px;
+}
+.tlacitkoSubmit {
+    background: gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.validError {
+    color: brown;
+}

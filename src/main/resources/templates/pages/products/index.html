@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div class="potvrzovaciZprava" th:text="${success}" th:if="${success}"></div>
+
+<article class="article">
+  <header>
+    <h1>Produkty</h1>
+    <p>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/produkty/vytvorit}">Vytvořit nový</a>
+    </p>
+  </header>
+  <section>
+    <div class="sectionDiv">
+      <div class="popisPoliProduktuDiv"><strong class="popisPoliProduktuDivStrong">Název&nbsp;Produktu</strong></div>
+      <div class="popisPoliProduktuDiv"><strong class="popisPoliProduktuDivStrong">Popis&nbsp;produktu</strong></div>
+      <div class="popisPoliProduktuDiv"><strong class="popisPoliProduktuDivStrong">Cena&nbsp;produktu</strong></div>
+      <div class="popisPoliProduktuDiv">&nbsp;</div>
+    </div>
+    <hr class="tlustaCara">
+    <ul class="seznamProduktu">
+      <li th:each="product: ${products}">
+        <div class="radekProduktu">
+          <strong class="popisPoliProduktuDiv"><div th:text="${product.nazev}"></div></strong>
+          <div class="popisPoliProduktuDiv" th:text="${product.popis}"></div>
+          <div class="popisPoliProduktuDiv" th:text="${product.cena} + ' Kč'"></div>
+          <div class="popisPoliProduktuDiv">
+            <div class="popisPoliProduktuDivDiv">
+              <a sec:authorize="hasRole('ADMIN')" th:href="@{'/produkty/upravit/' + ${product.productId}}">Upravit</a>
+              <div sec:authorize="hasRole('ADMIN')">&nbsp;|&nbsp;</div>
+            </div>
+            <div class="popisPoliProduktuDivDiv">
+              <a th:href="@{'/produkty/' + ${product.productId}}">Detail</a>
+              <div sec:authorize="hasRole('ADMIN')">&nbsp;|&nbsp;</div>
+            </div>
+            <div class="popisPoliProduktuDivDiv">
+              <a sec:authorize="hasRole('ADMIN')" th:href="@{'/produkty/smazat/' + ${product.productId}}">Smazat</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <hr class="sedaCara">
+        </div>
+      </li>
+    </ul>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

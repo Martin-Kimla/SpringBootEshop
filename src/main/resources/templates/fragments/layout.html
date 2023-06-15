@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/styles/formStyle.css}" type="text/css" />
+    <title>SpringBootEshop</title>
+</head>
+<body>
+
+<header class="header" th:fragment="header">
+    <nav class="nav">
+        <ul class="menuPolozky">
+            <li class="menuPolozka"><a class="menuPolozkaOdkaz" th:href="@{/}">Hlavní&nbsp;strana</a></li>
+            <li class="menuPolozka"><a class="menuPolozkaOdkaz" th:href="@{/o-eshopu}">O&nbsp;eshopu</a></li>
+            <li class="menuPolozka"><a class="menuPolozkaOdkaz" th:href="@{/produkty}">Produkty</a></li>
+        </ul>
+        <ul class="menuPolozky">
+            <li sec:authorize="isAnonymous()"><a class="menuPolozkaOdkaz" th:href="@{/uzivatel/prihlasit}">Přihlásit se</a></li>
+            <li sec:authorize="isAnonymous()"><a class="menuPolozkaOdkaz" th:href="@{/uzivatel/registrovat}">Registrovat</a></li>
+            <li>
+                <form method="post" th:action="@{/uzivatel/odhlasit}">
+                    <button class="tlacitkoOdhlasit" sec:authorize="isAuthenticated()">Odhlásit se</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<footer class="footer" th:fragment="footer">
+    Vytvořil &copy;Martin Kimla 2023
+</footer>
+
+</body>
+</html>

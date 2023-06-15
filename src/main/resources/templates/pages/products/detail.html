@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article class="article">
+  <header>
+    <h1 th:text="${product.nazev}"></h1>
+    <hr class="sedaCara"><br />
+  </header>
+  <section>
+    <p th:text="${'Popis produktu: ' + product.popis}"></p>
+    <p class="detailOdstavec" th:text="${'Cena produktu: ' + product.cena} + ' Kč'"></p>
+    <div class="popisPoliProduktuDivDiv">
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{'/produkty/upravit/' + ${product.productId}}">Upravit</a>
+      <div sec:authorize="hasRole('ADMIN')">&nbsp;|&nbsp;</div>
+      <a th:href="@{/produkty}">Zpět</a>
+    </div>
+
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>
